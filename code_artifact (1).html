@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Journal | 베트남 하노이 & 영화 컬렉션</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans KR & Playfair Display) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        terracotta: {
+                            DEFAULT: '#C85A32',
+                            dark: '#9E3F1B',
+                            light: '#E07A5F'
+                        },
+                        emeraldCustom: {
+                            DEFAULT: '#1D3E35',
+                            dark: '#112822',
+                            light: '#2D5E51'
+                        },
+                        goldCustom: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB'
+                        },
+                        sand: '#F7F4EF'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F7F4EF;
+            color: #2D3748;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .backdrop-blur-custom {
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-sand text-gray-800 flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-40 bg-emeraldCustom-dark/95 backdrop-blur-custom text-white shadow-xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- 로고 & 프로필 -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <span class="w-11 h-11 rounded-full bg-goldCustom flex items-center justify-center text-emeraldCustom-dark text-xl font-bold shadow-md transform group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-compass"></i>
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl sm:text-2xl font-bold text-goldCustom tracking-wider">JOURNAL & CINEMA</span>
+                        <span class="text-xs text-gray-300 tracking-widest uppercase">하노이 명소 10선 & 인생 영화 10선</span>
+                    </div>
+                </a>
+
+                <!-- 데스크톱 네비게이션 -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#hero" class="hover:text-goldCustom transition-colors py-2 border-b-2 border-transparent hover:border-goldCustom">소개</a>
+                    <a href="#hanoi" class="hover:text-goldCustom transition-colors py-2 border-b-2 border-transparent hover:border-goldCustom">하노이 명소 TOP 10</a>
+                    <a href="#movies" class="hover:text-goldCustom transition-colors py-2 border-b-2 border-transparent hover:border-goldCustom">추천 영화 TOP 10</a>
+                    <a href="#favorites" class="hover:text-goldCustom transition-colors py-2 border-b-2 border-transparent hover:border-goldCustom flex items-center gap-1.5">
+                        <i class="fa-solid fa-heart text-terracotta-light"></i>
+                        <span>보관함</span>
+                        <span id="fav-count" class="ml-1 px-2 py-0.5 text-xs bg-terracotta text-white rounded-full">0</span>
+                    </a>
+                </nav>
+
+                <!-- 모바일 메뉴 버튼 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-gray-300 hover:text-white p-2 rounded-md focus:outline-none" aria-label="메뉴 열기">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 모바일 드롭다운 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-emeraldCustom px-4 pt-2 pb-4 space-y-2 border-t border-emeraldCustom-light">
+            <a href="#hero" class="block px-3 py-2 rounded-md hover:bg-emeraldCustom-light text-white font-medium">소개</a>
+            <a href="#hanoi" class="block px-3 py-2 rounded-md hover:bg-emeraldCustom-light text-white font-medium">하노이 명소 TOP 10</a>
+            <a href="#movies" class="block px-3 py-2 rounded-md hover:bg-emeraldCustom-light text-white font-medium">추천 영화 TOP 10</a>
+            <a href="#favorites" class="block px-3 py-2 rounded-md hover:bg-emeraldCustom-light text-white font-medium flex items-center justify-between">
+                <span>보관함 (즐겨찾기)</span>
+                <span id="fav-count-mobile" class="px-2 py-0.5 text-xs bg-terracotta text-white rounded-full">0</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section id="hero" class="relative bg-emeraldCustom text-white overflow-hidden py-20 lg:py-28">
+            <div class="absolute inset-0 z-0 opacity-20">
+                <img src="https://images.unsplash.com/photo-1509030450996-93f2e1d789c1?q=80&w=1600&auto=format&fit=crop" alt="하노이 배경" class="w-full h-full object-cover">
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-terracotta/80 text-goldCustom-light text-sm font-semibold tracking-wide mb-6 shadow-sm border border-goldCustom/30">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <span>나의 하노이 여행 일지 & 영화 취향 보관소</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-white tracking-tight leading-tight mb-6">
+                    하노이의 고풍스러운 향결과<br>
+                    <span class="text-goldCustom">가슴 깊이 남는 영화 10선</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-200 font-light mb-10 leading-relaxed">
+                    안녕하세요! 베트남 하노이의 독특한 클래식 감성을 특별히 애정하는 저의 공간입니다.<br class="hidden sm:inline">
+                    가장 기억에 남는 하노이 명소 10곳과 삶의 영감을 준 추천 영화 10편을 한눈에 살펴보세요.
+                </p>
+                
+                <!-- 통합 실시간 검색창 -->
+                <div class="max-w-xl mx-auto relative">
+                    <div class="flex items-center bg-white rounded-full shadow-2xl p-2 border-2 border-goldCustom/50 focus-within:border-goldCustom transition-all">
+                        <i class="fa-solid fa-magnifying-glass text-gray-400 ml-4 text-lg"></i>
+                        <input id="global-search" type="text" placeholder="명소, 영화 제목, 카테고리, 장르 검색..." class="w-full px-4 py-2 text-gray-800 bg-transparent focus:outline-none text-sm sm:text-base">
+                        <button id="search-reset" class="hidden text-gray-400 hover:text-gray-600 px-3 py-1">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hanoi" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-300 pb-4">
+                <div>
+                    <div class="flex items-center space-x-2 text-terracotta font-semibold mb-1 text-sm tracking-widest uppercase">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>Hanoi Best Destinations</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-emeraldCustom-dark">하노이 추천 명소 10선</h2>
+                </div>
+                <p class="text-gray-600 text-sm mt-2 md:mt-0 max-w-md">
+                    천년의 역사와 매력적인 스트리트 문화가 오롯이 남아있는 하노이의 대표 명소를 선별했습니다.
+                </p>
+            </div>
+
+            <!-- 하노이 카드 그리드 -->
+            <div id="hanoi-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JS에서 카드 동적 생성 -->
+            </div>
+        </section>
+
+        <section id="movies" class="py-16 bg-emeraldCustom text-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-emeraldCustom-light pb-4">
+                    <div>
+                        <div class="flex items-center space-x-2 text-goldCustom font-semibold mb-1 text-sm tracking-widest uppercase">
+                            <i class="fa-solid fa-film"></i>
+                            <span>Cinema Masterpieces</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">추천 인생 영화 10선</h2>
+                    </div>
+                    <!-- 장르 필터 버튼 -->
+                    <div id="movie-genre-filters" class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                        <button class="genre-btn active px-3.5 py-1.5 text-xs rounded-full bg-goldCustom text-emeraldCustom-dark font-bold shadow transition-all" data-genre="all">전체</button>
+                        <button class="genre-btn px-3.5 py-1.5 text-xs rounded-full bg-emeraldCustom-light hover:bg-goldCustom hover:text-emeraldCustom-dark text-white font-medium transition-all" data-genre="드라마">드라마</button>
+                        <button class="genre-btn px-3.5 py-1.5 text-xs rounded-full bg-emeraldCustom-light hover:bg-goldCustom hover:text-emeraldCustom-dark text-white font-medium transition-all" data-genre="로맨스">로맨스</button>
+                        <button class="genre-btn px-3.5 py-1.5 text-xs rounded-full bg-emeraldCustom-light hover:bg-goldCustom hover:text-emeraldCustom-dark text-white font-medium transition-all" data-genre="SF/애니">SF/애니</button>
+                    </div>
+                </div>
+
+                <!-- 영화 카드 그리드 -->
+                <div id="movie-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- JS에서 카드 동적 생성 -->
+                </div>
+            </div>
+        </section>
+
+        <section id="favorites" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8 border-b border-gray-300 pb-4">
+                <div class="flex items-center space-x-3">
+                    <span class="p-3 bg-terracotta/10 text-terracotta rounded-full">
+                        <i class="fa-solid fa-bookmark text-2xl"></i>
+                    </span>
+                    <div>
+                        <h2 class="text-3xl font-serif font-bold text-emeraldCustom-dark">나만의 보관함</h2>
+                        <p class="text-sm text-gray-500">카드의 하트 아이콘을 클릭해 저장한 나만의 명소 & 영화 목록입니다.</p>
+                    </div>
+                </div>
+                <button id="clear-favs" class="hidden text-xs text-red-500 hover:text-red-700 font-medium underline">
+                    전체 비우기
+                </button>
+            </div>
+
+            <!-- 즐겨찾기 목록 -->
+            <div id="fav-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="fav-empty" class="col-span-full text-center py-12 bg-white/70 rounded-2xl border-2 border-dashed border-gray-300">
+                    <i class="fa-regular fa-heart text-4xl text-gray-300 mb-3 block"></i>
+                    <p class="text-gray-500 font-medium">아직 보관함에 담긴 항목이 없습니다.</p>
+                    <p class="text-xs text-gray-400 mt-1">마음에 드는 카드에서 하트 아이콘을 눌러 저장해보세요!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl transform scale-95 transition-all duration-300 relative max-h-[90vh] flex flex-col">
+            <button id="modal-close" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors" aria-label="닫기">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="relative h-64 sm:h-72 flex-shrink-0">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-4 left-6 right-6 text-white">
+                    <span id="modal-category" class="px-2.5 py-1 text-xs font-semibold bg-goldCustom text-emeraldCustom-dark rounded-md mb-2 inline-block"></span>
+                    <h3 id="modal-title" class="text-2xl sm:text-3xl font-serif font-bold text-white"></h3>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4">
+                <div id="modal-meta" class="flex flex-wrap gap-4 text-xs text-gray-500 border-b pb-3"></div>
+                <p id="modal-desc" class="text-gray-700 leading-relaxed text-sm sm:text-base"></p>
+                <div id="modal-tip-box" class="bg-sand p-4 rounded-xl border border-goldCustom/30">
+                    <h4 class="font-bold text-emeraldCustom text-sm flex items-center gap-1.5 mb-1">
+                        <i class="fa-solid fa-lightbulb text-goldCustom"></i> <span id="modal-tip-title">추천 팁</span>
+                    </h4>
+                    <p id="modal-tip" class="text-xs sm:text-sm text-gray-600 leading-relaxed"></p>
+                </div>
+            </div>
+            <div class="p-4 bg-gray-50 border-t flex justify-end">
+                <button id="modal-fav-btn" class="px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 bg-terracotta text-white hover:bg-terracotta-dark transition-colors shadow">
+                    <i class="fa-regular fa-heart"></i> <span>보관함에 담기</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-emeraldCustom-dark text-gray-400 py-12 border-t border-emeraldCustom-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+            <div>
+                <p class="font-serif text-lg font-bold text-goldCustom">VIETNAM JOURNAL & CINEMA</p>
+                <p class="text-xs text-gray-400 mt-1">베트남 하노이의 분위기와 영화 스토리를 기록하는 개인 홈페이지입니다.</p>
+            </div>
+            <div class="flex space-x-6 text-lg">
+                <a href="#" class="hover:text-goldCustom transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-goldCustom transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-goldCustom transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-emeraldCustom-light/40 text-center text-xs text-gray-500">
+            &copy; 2026 Personal Collection. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // 하노이 명소 TOP 10 데이터
+        const hanoiPlaces = [
+            {
+                id: 'h1',
+                type: 'hanoi',
+                title: '호안끼엠 호수 (Hoàn Kiếm Lake)',
+                subTitle: '하노이의 심장이자 신화가 숨쉬는 호수',
+                category: '자연 & 산책',
+                rating: 4.8,
+                image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop',
+                description: '하노이 도심 한가운데 위치한 호수로, 시민들의 휴식처이자 여행의 시작점입니다. 전설 속 거북이가 나타났다는 응옥썬 사당과 붉은색 테욱 교가 유명합니다.',
+                tip: '금요일 저녁부터 주말 동안 호수 주변 도로가 차 없는 거리로 전환되어 주말 야경 산책으로 최고입니다.',
+                location: '하노이 구시가지 중심'
+            },
+            {
+                id: 'h2',
+                type: 'hanoi',
+                title: '성 요셉 성당 (St. Joseph Cathedral)',
+                subTitle: '고풍스러운 프랑스 고딕 양식 성당',
+                category: '역사 건축',
+                rating: 4.7,
+                image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=800&auto=format&fit=crop',
+                description: '1886년 프랑스 식민지 시절 파리 노트르담 대성당 양식을 본떠 지어진 성당입니다. 오랜 세월을 지낸 듯한 고풍스러운 외벽이 하노이 스냅 사진의 필수 스팟입니다.',
+                tip: '성당 맞은편 야외 노천 카페에서 레몬티(Trà Chanh)를 마시는 것이 하노이 현지 로컬 문화입니다.',
+                location: '40 Nhà Chung, Hoàn Kiếm'
+            },
+            {
+                id: 'h3',
+                type: 'hanoi',
+                title: '쩐꾸옥 사원 (Trấn Quốc Pagoda)',
+                subTitle: '서호 위에 조용히 떠 있는 가장 오래된 사찰',
+                category: '종교 유적',
+                rating: 4.6,
+                image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=800&auto=format&fit=crop',
+                description: '6세기 리 왕조 시절 건립되어 1,500년이 넘는 역사를 자랑하는 사찰입니다. 붉은 빛 11층 불탑이 서호 호수 물결과 아름답게 어우러집니다.',
+                tip: '해가 지기 직전 서호 호수의 노을과 사원 불탑이 함께 담기는 타임을 놓치지 마세요.',
+                location: 'Thanh Niên, Yên Phụ, Tây Hồ'
+            },
+            {
+                id: 'h4',
+                type: 'hanoi',
+                title: '하노이 문묘 (Temple of Literature)',
+                subTitle: '공자를 모신 베트남 최초의 국립 대학',
+                category: '역사 & 문화',
+                rating: 4.7,
+                image: 'https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800&auto=format&fit=crop',
+                description: '1070년에 건립된 학문의 정당으로 전통 베트남 건축미와 울창한 정원을 자랑합니다. 과거 시험 합격자 이름이 새겨진 거북이 석비들을 볼 수 있습니다.',
+                tip: '시험철이나 졸업 시즌에 아오자이를 입은 대학생들의 촬영 명소로 유명합니다.',
+                location: '58 Quốc Tử Giám, Đống Đa'
+            },
+            {
+                id: 'h5',
+                type: 'hanoi',
+                title: '탕롱 황성 (Imperial Citadel)',
+                subTitle: '천년 역사를 보유한 유네스코 세계문화유산',
+                category: '세계문화유산',
+                rating: 4.5,
+                image: 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?q=80&w=800&auto=format&fit=crop',
+                description: '베트남 여러 왕조의 정치가 이루어졌던 궁궐 유적지입니다. 역사적인 옛 유물뿐 아니라 근대 베트남 전쟁 당시 지하 작전 지휘소까지 살펴볼 수 있습니다.',
+                tip: '입구의 고풍스러운 시계탑과 유적지 넓은 잔디밭은 인생샷 포인트입니다.',
+                location: '19 Hoàng Diệu, Quán Thánh, Ba Đình'
+            },
+            {
+                id: 'h6',
+                type: 'hanoi',
+                title: '하노이 오페라 하우스 (Hanoi Opera House)',
+                subTitle: '파리 오페라 하우스를 본뜬 황금빛 오페라 극장',
+                category: '예술 건축',
+                rating: 4.6,
+                image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop',
+                description: '1911년 완성된 클래식 네오클래식 양식의 건축물로 파리의 오페라 가르니에를 모델로 정교하게 지어졌습니다.',
+                tip: '공연이 없더라도 밤이 되면 건물 전체에 켜지는 조명이 매우 화려하고 로맨틱합니다.',
+                location: '1 Tràng Tiền, Phan Chu Trinh, Hoàn Kiếm'
+            },
+            {
+                id: 'h7',
+                type: 'hanoi',
+                title: '하노이 구시가지 (Old Quarter)',
+                subTitle: '36개 활기찬 전통 상가가 모인 하노이의 본모습',
+                category: '문화 & 거리',
+                rating: 4.9,
+                image: 'https://images.unsplash.com/photo-1509030450996-93f2e1d789c1?q=80&w=800&auto=format&fit=crop',
+                description: '과거 품목별로 상인들이 모여 형성한 36개 거리입니다. 목재 의자에 앉아 에그 커피를 즐기고 스트리트 푸드를 경험하기에 가장 완벽한 장소입니다.',
+                tip: '‘카페 지앙(Café Giảng)’에 방문해 진한 원조 에그커피를 시도해보세요.',
+                location: '호안끼엠 호수 북쪽 일대'
+            },
+            {
+                id: 'h8',
+                type: 'hanoi',
+                title: '동쑤언 시장 (Đồng Xuân Market)',
+                subTitle: '하노이에서 가장 규모가 큰 실내 전통 도매시장',
+                category: '쇼핑 & 시장',
+                rating: 4.4,
+                image: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=800&auto=format&fit=crop',
+                description: '1889년 프랑스인들에 의해 세워진 하노이 대표 대형 실내 시장입니다. 의류, 건어물, 각종 생필품과 기념품을 저렴하게 살펴볼 수 있습니다.',
+                tip: '시장 내부 및 주변 골목길의 분짜, 쌀국수 등 현지 먹거리가 매우 유명합니다.',
+                location: 'Đồng Xuân, Hoàn Kiếm'
+            },
+            {
+                id: 'h9',
+                type: 'hanoi',
+                title: '호치민 묘소 (Ho Chi Minh Mausoleum)',
+                subTitle: '베트남 건국의 아버지 호치민 주석이 잠든 성지',
+                category: '역사 & 명소',
+                rating: 4.8,
+                image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=800&auto=format&fit=crop',
+                description: '광활한 바딘 광장에 웅장하게 서 있는 대리석 건물로, 베트남 국민들의 존경을 받는 호치민 주석의 영구가 보존되어 있습니다.',
+                tip: '내부 입장을 위해서는 민소매, 반바지 등의 복장이 금지되며 정숙을 유지해야 합니다.',
+                location: '2 Hùng Vương, Điện Biên, Ba Đình'
+            },
+            {
+                id: 'h10',
+                type: 'hanoi',
+                title: '하노이 서호 (West Lake, Hồ Tây)',
+                subTitle: '탁 트인 전망과 세련된 분위기의 대형 호수',
+                category: '자연 & 레저',
+                rating: 4.7,
+                image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=800&auto=format&fit=crop',
+                description: '하노이에서 가장 넓은 호수로 주변에 세련된 브런치 카페, 다이닝 펍, 고급 리조트들이 늘어서 있어 여유로운 분위기를 자랑합니다.',
+                tip: '자전거를 대여해 호수 주변 길을 달리고 야외 테라스에서 오크라 맥주를 즐겨보세요.',
+                location: '하노이 서호구 일대'
+            }
+        ];
+
+        // 추천 영화 TOP 10 데이터
+        const movieCollection = [
+            {
+                id: 'm1',
+                type: 'movie',
+                title: '그린 북 (Green Book)',
+                subTitle: '차별을 넘어선 두 남자의 진실된 우정 여행',
+                genre: '드라마',
+                rating: 4.9,
+                year: '2018',
+                image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800&auto=format&fit=crop',
+                description: '1960년대 미국, 인종차별이 극심하던 남부로 투어를 떠나게 된 교양 있는 천재 피아니스트 돈 셜리와 다혈질 운전기사 토니의 가슴 따뜻한 로드무비.',
+                tip: '서로 다른 세계의 두 사람이 이해와 유머를 통해 진정한 친구가 되는 과정이 일품입니다.'
+            },
+            {
+                id: 'm2',
+                type: 'movie',
+                title: '라라랜드 (La La Land)',
+                subTitle: '꿈꾸는 이들의 도시, 빛나는 청춘과 사랑',
+                genre: '로맨스',
+                rating: 4.8,
+                year: '2016',
+                image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=800&auto=format&fit=crop',
+                description: '재즈 피아니스트 세바스찬과 배우 지망생 미아가 꿈을 향해 나아가며 나누는 환상적인 음악과 로맨스의 여정.',
+                tip: '재즈 음악과 색감 가득한 감각적인 미장센, 그리고 황홀한 엔딩 스퀘어가 여운을 남깁니다.'
+            },
+            {
+                id: 'm3',
+                type: 'movie',
+                title: '인터스텔라 (Interstellar)',
+                subTitle: '시공간을 뛰어넘는 아빠의 사랑과 인류의 희망',
+                genre: 'SF/애니',
+                rating: 4.9,
+                year: '2014',
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
+                description: '붕괴해가는 지구를 뒤로하고 새로운 터전을 찾기 위해 우주로 떠나는 인류 탐사대의 경이로운 과학 SF 서사시.',
+                tip: '한스 짐머의 파이프 오르간 사운드트랙과 블랙홀 연출의 압도적인 장엄함을 감상하세요.'
+            },
+            {
+                id: 'm4',
+                type: 'movie',
+                title: '센과 치히로의 행방불명',
+                subTitle: '지브리 스튜디오가 선사하는 판타지 대표작',
+                genre: 'SF/애니',
+                rating: 4.9,
+                year: '2001',
+                image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop',
+                description: '우연히 신들의 세계로 들어간 어린 소녀 치히로가 부모님을 구하고 자아를 찾아가는 몽환적이고 감동적인 성장 모험극.',
+                tip: '히사이시 조의 서정적인 음악과 디테일하게 그려진 신비로운 신들의 세계를 만끽해보세요.'
+            },
+            {
+                id: 'm5',
+                type: 'movie',
+                title: '비포 선라이즈 (Before Sunrise)',
+                subTitle: '우연히 만나 써 내려간 비엔나에서의 하루',
+                genre: '로맨스',
+                rating: 4.7,
+                year: '1995',
+                image: 'https://images.unsplash.com/photo-1518173946687-a4c8a383392e?q=80&w=800&auto=format&fit=crop',
+                description: '유럽 열차 안에서 우연히 만난 제시와 셀린느가 비엔나에서 내려 하룻밤 동안 솔직하고 지적인 대화를 이어가는 낭만 클래식.',
+                tip: '대화만으로도 영화 전체를 완벽하게 채우는 여행 로맨스의 대표 교과서입니다.'
+            },
+            {
+                id: 'm6',
+                type: 'movie',
+                title: '쇼생크 탈출 (The Shawshank Redemption)',
+                subTitle: '절망의 순간 속에서도 끝내 잃지 않은 희망',
+                genre: '드라마',
+                rating: 5.0,
+                year: '1994',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop',
+                description: '억울한 누명을 쓰고 쇼생크 교도소에 수감된 앤디 듀프레인이 절망 속에서도 존엄과 희망을 유지하며 자유를 꿈꾸는 감동의 걸작.',
+                tip: '거센 빗속에서 자유를 되찾고 팔을 벌리는 앤디의 장면은 영화사 최고의 쾌감을 선사합니다.'
+            },
+            {
+                id: 'm7',
+                type: 'movie',
+                title: '그랜드 부다페스트 호텔',
+                subTitle: '웨스 앤더슨 감독이 만든 환상적인 미학 모험',
+                genre: '드라마',
+                rating: 4.6,
+                year: '2014',
+                image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop',
+                description: '세계 최고 부호의 의문사를 둘러싸고 호텔 지배인 구스타브와 로비보이 제로가 벌이는 미스터리 미학 어드벤처.',
+                tip: '완벽한 1:1 대칭 구도와 아기자기한 파스텔 핑크 색감이 눈을 기쁘게 합니다.'
+            },
+            {
+                id: 'm8',
+                type: 'movie',
+                title: '어바웃 타임 (About Time)',
+                subTitle: '오늘 하루를 두 번 살아보는 삶의 위대한 지혜',
+                genre: '로맨스',
+                rating: 4.8,
+                year: '2013',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop',
+                description: '시간을 되돌리는 능력을 가진 남자가 진정한 사랑과 가족의 의미, 그리고 평범한 매일의 소중함을 깨달아 가는 따뜻한 로맨틱 힐링극.',
+                tip: '단순한 연애 소설을 넘어 삶과 시간의 가치를 진하게 되새기게 해줍니다.'
+            },
+            {
+                id: 'm9',
+                type: 'movie',
+                title: '헤어질 결심 (Decision to Leave)',
+                subTitle: '안개 속에서 시작되는 은밀하고 매혹적인 사랑',
+                genre: '로맨스',
+                rating: 4.7,
+                year: '2022',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop',
+                description: '변사 사건을 수사하게 된 형사 해준과 사망자의 아내 서래가 만나며 느끼는 미묘하고도 서늘한 감정의 파동.',
+                tip: '박찬욱 감독의 정교한 연출과 대사, 배우들의 은밀한 눈빛 연기에 집중해보세요.'
+            },
+            {
+                id: 'm10',
+                type: 'movie',
+                title: '월-E (WALL-E)',
+                subTitle: '텅 빈 지구에서 꽃피운 작고 순수한 사랑',
+                genre: 'SF/애니',
+                rating: 4.8,
+                year: '2008',
+                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop',
+                description: '버려진 지구에 남아 수백 년 동안 쓰레기를 치우던 외로운 청소 로봇 월-E가 세련된 로봇 이브를 만나 우주로 향하는 사랑 이야기.',
+                tip: '대사가 없어도 마음을 뭉클하게 만드는 픽사의 감성 연출력이 빛납니다.'
+            }
+        ];
+
+        // 즐겨찾기 상태 관리
+        let favorites = JSON.parse(localStorage.getItem('my_journal_favs')) || [];
+
+        function saveFavorites() {
+            localStorage.setItem('my_journal_favs', JSON.stringify(favorites));
+            updateFavUI();
+        }
+
+        function toggleFavorite(id) {
+            const index = favorites.indexOf(id);
+            if (index === -1) {
+                favorites.push(id);
+            } else {
+                favorites.splice(index, 1);
+            }
+            saveFavorites();
+            renderHanoiPlaces(document.getElementById('global-search').value.trim());
+            renderMovies(document.getElementById('global-search').value.trim());
+            renderFavorites();
+        }
+
+        function updateFavUI() {
+            const count = favorites.length;
+            document.getElementById('fav-count').textContent = count;
+            document.getElementById('fav-count-mobile').textContent = count;
+            
+            const clearBtn = document.getElementById('clear-favs');
+            if (count > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+        }
+
+        function renderHanoiPlaces(filterKeyword = '') {
+            const container = document.getElementById('hanoi-grid');
+            container.innerHTML = '';
+
+            const filtered = hanoiPlaces.filter(item => {
+                const k = filterKeyword.toLowerCase();
+                return item.title.toLowerCase().includes(k) || 
+                       item.subTitle.toLowerCase().includes(k) || 
+                       item.category.toLowerCase().includes(k);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">검색 조건에 해당되는 하노이 명소가 없습니다.</div>`;
+                return;
+            }
+
+            filtered.forEach(place => {
+                const isFav = favorites.includes(place.id);
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden shadow-md card-hover border border-gray-100 flex flex-col justify-between cursor-pointer group';
+                card.onclick = () => openModal(place);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-52 overflow-hidden">
+                            <img src="${place.image}" alt="${place.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            <div class="absolute top-3 left-3 bg-emeraldCustom-dark/85 backdrop-blur-sm text-goldCustom px-2.5 py-1 rounded-md text-xs font-semibold shadow">
+                                ${place.category}
+                            </div>
+                            <button onclick="event.stopPropagation(); toggleFavorite('${place.id}')" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-md text-terracotta flex items-center justify-center hover:bg-white shadow transition-transform active:scale-90" aria-label="보관">
+                                <i class="${isFav ? 'fa-solid text-terracotta' : 'fa-regular text-gray-400'} fa-heart text-base"></i>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between text-xs text-gray-500 mb-1.5">
+                                <span class="flex items-center gap-1 text-goldCustom font-bold"><i class="fa-solid fa-star"></i> ${place.rating}</span>
+                                <span class="truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-terracotta me-1"></i>${place.location}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 font-serif mb-1 group-hover:text-terracotta transition-colors">${place.title}</h3>
+                            <p class="text-xs font-medium text-terracotta mb-3 line-clamp-1">${place.subTitle}</p>
+                            <p class="text-gray-600 text-xs line-clamp-2 leading-relaxed">${place.description}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-emeraldCustom">
+                            <span>자세히보기</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        let currentGenre = 'all';
+        function renderMovies(filterKeyword = '') {
+            const container = document.getElementById('movie-grid');
+            container.innerHTML = '';
+
+            const filtered = movieCollection.filter(item => {
+                const k = filterKeyword.toLowerCase();
+                const matchesSearch = item.title.toLowerCase().includes(k) || 
+                                      item.subTitle.toLowerCase().includes(k) || 
+                                      item.genre.toLowerCase().includes(k);
+                const matchesGenre = (currentGenre === 'all') || (item.genre === currentGenre);
+                return matchesSearch && matchesGenre;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-300">검색 조건에 해당되는 영화가 없습니다.</div>`;
+                return;
+            }
+
+            filtered.forEach(movie => {
+                const isFav = favorites.includes(movie.id);
+                const card = document.createElement('div');
+                card.className = 'bg-emeraldCustom-light/60 rounded-xl overflow-hidden border border-emeraldCustom-light/80 shadow-lg card-hover flex flex-col justify-between cursor-pointer group';
+                card.onclick = () => openModal(movie);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="${movie.image}" alt="${movie.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-emeraldCustom-dark via-transparent to-transparent opacity-80"></div>
+                            <button onclick="event.stopPropagation(); toggleFavorite('${movie.id}')" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-emeraldCustom-dark/60 backdrop-blur-md text-terracotta flex items-center justify-center hover:bg-emeraldCustom-dark shadow transition-transform active:scale-90" aria-label="보관">
+                                <i class="${isFav ? 'fa-solid text-terracotta' : 'fa-regular text-gray-300'} fa-heart text-xs"></i>
+                            </button>
+                            <span class="absolute bottom-2 left-2 px-2 py-0.5 text-[10px] font-bold bg-goldCustom text-emeraldCustom-dark rounded">
+                                ${movie.genre}
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center justify-between text-xs text-goldCustom font-semibold mb-1">
+                                <span><i class="fa-solid fa-star me-1"></i>${movie.rating}</span>
+                                <span class="text-gray-300 font-normal">${movie.year}</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white font-serif mb-1 group-hover:text-goldCustom transition-colors line-clamp-1">${movie.title}</h3>
+                            <p class="text-xs text-gray-300 line-clamp-2 leading-relaxed">${movie.description}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <span class="text-xs text-goldCustom/90 font-medium group-hover:underline flex items-center gap-1">
+                            상세 스토리에 집중하기 <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderFavorites() {
+            const container = document.getElementById('fav-grid');
+            const emptyState = document.getElementById('fav-empty');
+
+            const existingItems = container.querySelectorAll('.fav-item-card');
+            existingItems.forEach(el => el.remove());
+
+            if (favorites.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            const allItems = [...hanoiPlaces, ...movieCollection];
+            const favItems = allItems.filter(item => favorites.includes(item.id));
+
+            favItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'fav-item-card bg-white rounded-xl overflow-hidden shadow border border-gray-200 flex items-center p-3 gap-3 relative hover:shadow-md transition-shadow';
+
+                const isHanoi = item.type === 'hanoi';
+
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                    <div class="flex-grow min-w-0 cursor-pointer" onclick='openModal(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                        <span class="text-[10px] font-bold uppercase ${isHanoi ? 'text-terracotta' : 'text-emeraldCustom'}">${isHanoi ? '하노이 명소' : '추천 영화'}</span>
+                        <h4 class="text-sm font-bold text-gray-800 truncate">${item.title}</h4>
+                        <p class="text-xs text-gray-500 truncate">${item.subTitle}</p>
+                    </div>
+                    <button onclick="toggleFavorite('${item.id}')" class="text-gray-400 hover:text-red-500 p-2 text-sm flex-shrink-0" title="삭제">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        let currentModalItemId = null;
+        function openModal(item) {
+            currentModalItemId = item.id;
+            const modal = document.getElementById('detail-modal');
+            
+            document.getElementById('modal-img').src = item.image;
+            document.getElementById('modal-title').textContent = item.title;
+            document.getElementById('modal-category').textContent = item.category || item.genre;
+            document.getElementById('modal-desc').textContent = item.description;
+            
+            const metaContainer = document.getElementById('modal-meta');
+            if (item.type === 'hanoi') {
+                metaContainer.innerHTML = `
+                    <span><i class="fa-solid fa-star text-goldCustom me-1"></i>평점 ${item.rating}</span>
+                    <span><i class="fa-solid fa-location-dot me-1 text-terracotta"></i>${item.location}</span>
+                `;
+                document.getElementById('modal-tip-title').textContent = '하노이 여행 팁';
+                document.getElementById('modal-tip').textContent = item.tip;
+            } else {
+                metaContainer.innerHTML = `
+                    <span><i class="fa-solid fa-star text-goldCustom me-1"></i>평점 ${item.rating}</span>
+                    <span><i class="fa-solid fa-calendar me-1"></i>개봉년도: ${item.year}년</span>
+                    <span><i class="fa-solid fa-film me-1"></i>장르: ${item.genre}</span>
+                `;
+                document.getElementById('modal-tip-title').textContent = '감상 포인트';
+                document.getElementById('modal-tip').textContent = item.tip;
+            }
+
+            updateModalFavBtn();
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-95');
+            modal.querySelector('div').classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateModalFavBtn() {
+            const btn = document.getElementById('modal-fav-btn');
+            const isFav = favorites.includes(currentModalItemId);
+            if (isFav) {
+                btn.innerHTML = `<i class="fa-solid fa-heart"></i> <span>보관함에서 제거</span>`;
+                btn.className = 'px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors shadow-sm';
+            } else {
+                btn.innerHTML = `<i class="fa-regular fa-heart"></i> <span>보관함에 담기</span>`;
+                btn.className = 'px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 bg-terracotta text-white hover:bg-terracotta-dark transition-colors shadow';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHanoiPlaces();
+            renderMovies();
+            renderFavorites();
+            updateFavUI();
+
+            // 검색 기능
+            const searchInput = document.getElementById('global-search');
+            const searchReset = document.getElementById('search-reset');
+
+            searchInput.addEventListener('input', (e) => {
+                const val = e.target.value.trim();
+                if (val.length > 0) {
+                    searchReset.classList.remove('hidden');
+                } else {
+                    searchReset.classList.add('hidden');
+                }
+                renderHanoiPlaces(val);
+                renderMovies(val);
+            });
+
+            searchReset.addEventListener('click', () => {
+                searchInput.value = '';
+                searchReset.classList.add('hidden');
+                renderHanoiPlaces();
+                renderMovies();
+            });
+
+            // 영화 필터 버튼
+            const genreBtns = document.querySelectorAll('.genre-btn');
+            genreBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    genreBtns.forEach(b => {
+                        b.classList.remove('active', 'bg-goldCustom', 'text-emeraldCustom-dark', 'font-bold');
+                        b.classList.add('bg-emeraldCustom-light', 'text-white', 'font-medium');
+                    });
+                    btn.classList.add('active', 'bg-goldCustom', 'text-emeraldCustom-dark', 'font-bold');
+                    btn.classList.remove('bg-emeraldCustom-light', 'text-white', 'font-medium');
+
+                    currentGenre = btn.getAttribute('data-genre');
+                    renderMovies(searchInput.value.trim());
+                });
+            });
+
+            // 모달 제어
+            document.getElementById('modal-close').addEventListener('click', closeModal);
+            document.getElementById('detail-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'detail-modal') closeModal();
+            });
+
+            document.getElementById('modal-fav-btn').addEventListener('click', () => {
+                if (currentModalItemId) {
+                    toggleFavorite(currentModalItemId);
+                    updateModalFavBtn();
+                }
+            });
+
+            // 전체 비우기
+            document.getElementById('clear-favs').addEventListener('click', () => {
+                favorites = [];
+                saveFavorites();
+                renderHanoiPlaces();
+                renderMovies();
+                renderFavorites();
+            });
+
+            // 모바일 네비게이션
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
