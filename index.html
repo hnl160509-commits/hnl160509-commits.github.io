@@ -59,6 +59,23 @@
         }
     
 :root{--ink:#18342e;--paper:#f6f3ec;--line:rgba(24,52,46,.12)}html{scroll-padding-top:5.5rem}body{background:var(--paper)!important;color:var(--ink)!important}header{background:rgba(19,43,37,.97)!important;box-shadow:0 8px 30px rgba(14,35,29,.14)!important}#music-games{background:#eee9df!important;border-color:var(--line)!important;padding-block:3.5rem!important}#music-games a{background:rgba(255,255,255,.88)!important;border-color:var(--line)!important;border-radius:1.5rem!important;transition:transform .25s ease,box-shadow .25s ease}#music-games a:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(25,49,42,.12)!important}#hero{min-height:590px;display:flex;align-items:center;padding-block:6rem!important;background:#18342e!important}#hero>div:first-child{opacity:.36!important}#hero:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(12,31,27,.65),rgba(12,31,27,.16)),linear-gradient(0deg,rgba(12,31,27,.36),transparent 65%)}#hero>div:nth-child(2){width:100%}#hero h1{font-size:clamp(2.8rem,6vw,5.4rem)!important;letter-spacing:-.055em!important;line-height:1.14!important;text-shadow:0 3px 24px rgba(0,0,0,.2)}#hero p{color:rgba(255,255,255,.9)!important}#global-search{min-height:3.25rem}#hanoi,#favorites{padding-block:6rem!important}#hanoi-grid{gap:1.5rem!important}#hanoi-grid>div{border:1px solid var(--line)!important;border-radius:1.35rem!important;box-shadow:0 8px 26px rgba(24,52,46,.06)!important}#hanoi-grid>div:hover{transform:translateY(-7px);box-shadow:0 22px 42px rgba(24,52,46,.13)!important}#movies{background:#18342e!important;padding-block:5rem!important}#movie-grid>div{border-radius:1.25rem!important;border-color:rgba(255,255,255,.14)!important;background:rgba(255,255,255,.075)!important;box-shadow:0 12px 32px rgba(0,0,0,.12)!important}#movie-grid>div:hover{transform:translateY(-6px);box-shadow:0 20px 36px rgba(0,0,0,.24)!important}#fav-empty{background:rgba(255,255,255,.68)!important;border-color:rgba(24,52,46,.18)!important}footer{background:#122a25!important}#detail-modal>div{border-radius:1.5rem!important}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e2b84e!important;outline-offset:3px}@media(max-width:640px){#hero{min-height:540px;padding-block:4rem!important}#hero h1{font-size:clamp(2.45rem,11vw,3.6rem)!important}#hanoi,#favorites,#movies{padding-block:4rem!important}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* Personal portfolio: warm pink, brown and white */
+:root{--ink:#49352f;--paper:#fffaf8;--line:#f0ded8;--rose:#d98291;--rose-deep:#a95768;--brown:#60443b}
+body{background:var(--paper)!important;color:var(--ink)!important}
+header{background:rgba(255,250,248,.96)!important;color:var(--brown)!important;border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(96,68,59,.08)!important}
+header a,header nav a,header button{color:var(--brown)!important}header nav a:hover{color:var(--rose-deep)!important;border-color:var(--rose)!important}header .bg-goldCustom{background:#f2cbd1!important;color:var(--brown)!important}header .text-goldCustom{color:var(--brown)!important}header .text-gray-300{color:#8f7770!important}
+#hero{min-height:560px;background:linear-gradient(140deg,#fff7f5 0%,#f8e6e7 55%,#f1d4ca 100%)!important;color:var(--brown)!important;isolation:isolate}
+#hero:after{display:none}#hero h1{font-size:clamp(3.5rem,9vw,7rem)!important;color:#60443b!important;letter-spacing:-.06em!important;line-height:1.05!important}#hero p{color:#735a52!important}
+.hero-orb{position:absolute;border-radius:999px;filter:blur(2px);z-index:-1;opacity:.55}.hero-orb-one{width:300px;height:300px;left:4%;top:8%;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,0) 72%)}.hero-orb-two{width:370px;height:370px;right:3%;bottom:-22%;background:radial-gradient(circle,#e8b5b5 0%,rgba(232,181,181,0) 72%)}
+.hero-kicker{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1rem;border:1px solid #e8c6c2;background:rgba(255,255,255,.75);border-radius:999px;color:#a95768;font-size:.76rem;font-weight:700;letter-spacing:.16em;margin-bottom:1.5rem}.youtube-cta{display:inline-flex;align-items:center;gap:.7rem;background:#a95768;color:#fff!important;padding:.9rem 1.35rem;border-radius:999px;font-weight:700;box-shadow:0 12px 24px rgba(169,87,104,.2);transition:transform .2s,box-shadow .2s}.youtube-cta:hover{transform:translateY(-2px);box-shadow:0 16px 28px rgba(169,87,104,.28)}
+#music-games,#hanoi,#favorites{background:#fffaf8!important}#movies{background:#f7e9e6!important;color:var(--brown)!important}#movies h2,#movies h3,#movies p{color:var(--brown)}#movies .text-gray-300{color:#816a62!important}#movies .border-emeraldCustom-light{border-color:#e8d2cc!important}#movies .bg-emeraldCustom-light{background:#fff!important;color:var(--brown)!important}#movies .genre-btn.active{background:#a95768!important;color:#fff!important}#movie-grid>div{background:#fff!important;border:1px solid var(--line)!important;box-shadow:0 12px 28px rgba(96,68,59,.08)!important}#movie-grid .text-goldCustom{color:#a95768!important}#movie-grid .bg-goldCustom{background:#f3d4d7!important;color:#704a4b!important}
+#hanoi-grid>div,#fav-grid>.fav-item-card{background:#fff!important;border:1px solid var(--line)!important;border-radius:1.35rem!important;box-shadow:0 10px 28px rgba(96,68,59,.07)!important}#hanoi-grid>div:hover{box-shadow:0 18px 38px rgba(96,68,59,.13)!important}#hanoi-grid .text-emeraldCustom,#hanoi-grid .text-terracotta{color:#a95768!important}#hanoi-grid .bg-emeraldCustom-dark{background:rgba(73,53,47,.88)!important;color:#fff!important}
+#music-games{background:#fff!important;border-color:var(--line)!important;padding-block:5rem!important}.section-heading h2{color:var(--brown)}.section-heading p{color:#846e67}.section-eyebrow,.card-eyebrow{display:block;color:#a95768;font-size:.72rem;font-weight:800;letter-spacing:.16em}.section-heading h2{margin-top:.55rem;letter-spacing:-.04em}.personal-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;min-height:255px;padding:1.65rem;background:#fff;border:1px solid var(--line);border-radius:1.4rem;box-shadow:0 10px 28px rgba(96,68,59,.07);transition:transform .22s,box-shadow .22s}.personal-card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(96,68,59,.14)}.personal-icon{display:grid;place-items:center;width:3.2rem;height:3.2rem;border-radius:1rem;background:#f8e6e7;color:#a95768;font-size:1.4rem;margin-bottom:1.3rem}.personal-card h3{font-size:1.4rem;font-weight:800;color:var(--brown);margin-top:.45rem}.personal-card p{color:#846e67;font-size:.9rem;margin-top:.35rem}.personal-card .card-link{display:flex;gap:.5rem;align-items:center;margin-top:auto;padding-top:1.3rem;color:#a95768;font-weight:700;font-size:.86rem}
+#hanoi h2,#favorites h2{color:var(--brown)}#hanoi>div:first-child,#movies>div>div:first-child,#favorites>div:first-child{border-color:var(--line)!important}#fav-empty{background:#fff!important;border-color:#e5c9c4!important}footer{background:#49352f!important;border-color:#6f554c!important}footer .text-goldCustom{color:#f4cbd0!important}footer .text-gray-400,footer .text-gray-500{color:#e3d2cc!important}footer a:hover{color:#f4cbd0!important}
+#fav-count,#fav-count-mobile{background:#a95768!important}#clear-favs{color:#a95768!important}#detail-modal>div{border-radius:1.5rem!important}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #c96f80!important;outline-offset:3px}
+@media(max-width:640px){#hero{min-height:520px;padding-block:4.5rem!important}#hero h1{font-size:clamp(3rem,14vw,4.6rem)!important}#music-games,#hanoi,#movies,#favorites{padding-block:4rem!important}.personal-card{min-height:225px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 </head>
 <body class="font-sans antialiased bg-sand text-gray-800 flex flex-col min-h-screen">
@@ -72,8 +89,8 @@
                         <i class="fa-solid fa-compass"></i>
                     </span>
                     <div class="flex flex-col">
-                        <span class="font-serif text-xl sm:text-2xl font-bold text-goldCustom tracking-wider">JOURNAL & CINEMA</span>
-                        <span class="text-xs text-gray-300 tracking-widest uppercase">하노이 명소 10선 & 인생 영화 10선</span>
+                        <span class="font-serif text-xl sm:text-2xl font-bold text-goldCustom tracking-wider">LINH HOÀNG</span>
+                        <span class="text-xs text-gray-300 tracking-widest uppercase">TRANG CÁ NHÂN</span>
                     </div>
                 </a>
 
@@ -110,64 +127,42 @@
         </div>
     </header>
 
-<section id="music-games" class="py-16 bg-white/70 border-y border-emerald-100">
-  <div class="max-w-7xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold text-emeraldCustom-dark">
-      Music &amp; Games
-    </h2>
-    <p class="mt-3 text-gray-600">Nghe nhạc và chơi game của tôi</p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto mt-8">
-      <a href="https://hnl160509-commits.github.io/music/"
-         class="block rounded-2xl bg-sand border border-emerald-100 p-8 shadow-sm hover:shadow-xl">
-        <span class="text-3xl">♫</span>
-        <h3 class="mt-4 text-2xl font-bold text-emeraldCustom-dark">My Music</h3>
-        <p class="mt-2 text-gray-600">Nghe nhạc</p>
-        <span class="inline-block mt-4 font-semibold text-emeraldCustom">Open Music ↗</span>
+
+    <main class="flex-grow">
+        <section id="hero" class="relative overflow-hidden py-20 lg:py-28">
+  <div class="hero-orb hero-orb-one"></div><div class="hero-orb hero-orb-two"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="hero-kicker"><i class="fa-regular fa-heart"></i> TRANG CÁ NHÂN</span>
+    <h1 class="font-serif font-extrabold tracking-tight leading-tight mb-5">Linh Hoàng</h1>
+    <p class="max-w-xl mx-auto text-lg sm:text-xl font-light mb-8 leading-relaxed">Chào mừng bạn đến với góc nhỏ của mình — nơi lưu lại những điều mình yêu thích.</p>
+    <a class="youtube-cta" href="https://youtube.com/@linhhoang-v9z1u?si=WPSdQtqa8aQ1EVSa" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i> Kênh YouTube của mình <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
+    <div class="max-w-xl mx-auto relative mt-9">
+      <div class="flex items-center bg-white rounded-full shadow-lg p-2 border focus-within:border-pink-400 transition-all">
+        <i class="fa-solid fa-magnifying-glass text-gray-400 ml-4 text-lg"></i>
+        <input id="global-search" type="text" placeholder="Tìm địa điểm, phim hoặc thể loại..." class="w-full px-4 py-2 text-gray-800 bg-transparent focus:outline-none text-sm sm:text-base">
+        <button id="search-reset" class="hidden text-gray-400 hover:text-gray-600 px-3 py-1" aria-label="Xóa tìm kiếm"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="music-games" class="py-16 border-y">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="section-heading text-center"><span class="section-eyebrow">KẾT NỐI & GIẢI TRÍ</span><h2 class="text-3xl sm:text-4xl font-bold">Những góc nhỏ của mình</h2><p class="mt-3">Chọn một mục để khám phá thêm.</p></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto mt-9">
+      <a href="https://youtube.com/@linhhoang-v9z1u?si=WPSdQtqa8aQ1EVSa" target="_blank" rel="noopener noreferrer" class="personal-card">
+        <span class="personal-icon"><i class="fa-brands fa-youtube"></i></span><span class="card-eyebrow">YOUTUBE</span><h3>Kênh YouTube</h3><p>Ghé thăm kênh của mình</p><span class="card-link">Xem kênh <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
       </a>
-
-      <a href="https://hnl160509-commits.github.io/game/"
-         class="block rounded-2xl bg-sand border border-emerald-100 p-8 shadow-sm hover:shadow-xl">
-        <span class="text-3xl">🎮</span>
-        <h3 class="mt-4 text-2xl font-bold text-emeraldCustom-dark">My Games</h3>
-        <p class="mt-2 text-gray-600">Chơi game</p>
-        <span class="inline-block mt-4 font-semibold text-emeraldCustom">Play Games ↗</span>
+      <a href="https://hnl160509-commits.github.io/music/" class="personal-card">
+        <span class="personal-icon"><i class="fa-solid fa-music"></i></span><span class="card-eyebrow">ÂM NHẠC</span><h3>My Music</h3><p>Những giai điệu mình yêu thích</p><span class="card-link">Nghe nhạc <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="https://hnl160509-commits.github.io/game/" class="personal-card">
+        <span class="personal-icon"><i class="fa-solid fa-gamepad"></i></span><span class="card-eyebrow">TRÒ CHƠI</span><h3>My Games</h3><p>Thư giãn với những trò chơi</p><span class="card-link">Chơi game <i class="fa-solid fa-arrow-right"></i></span>
       </a>
     </div>
   </div>
 </section>
 
-    <main class="flex-grow">
-        <section id="hero" class="relative bg-emeraldCustom text-white overflow-hidden py-20 lg:py-28">
-            <div class="absolute inset-0 z-0 opacity-20">
-                <img src="https://images.unsplash.com/photo-1509030450996-93f2e1d789c1?q=80&w=1600&auto=format&fit=crop" alt="하노이 배경" class="w-full h-full object-cover">
-            </div>
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-terracotta/80 text-goldCustom-light text-sm font-semibold tracking-wide mb-6 shadow-sm border border-goldCustom/30">
-                    <i class="fa-solid fa-plane-departure"></i>
-                    <span>나의 하노이 여행 일지 & 영화 취향 보관소</span>
-                </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-white tracking-tight leading-tight mb-6">
-                    하노이의 고풍스러운 향기와<br>
-                    <span class="text-goldCustom">가슴 깊이 남는 영화 10선</span>
-                </h1>
-                <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-200 font-light mb-10 leading-relaxed">
-                    안녕하세요! 베트남 하노이의 독특한 클래식 감성을 특별히 애정하는 저의 공간입니다.<br class="hidden sm:inline">
-                    가장 기억에 남는 하노이 명소 10곳과 삶의 영감을 준 추천 영화 10편을 한눈에 살펴보세요.
-                </p>
-                
-                <!-- 통합 실시간 검색창 -->
-                <div class="max-w-xl mx-auto relative">
-                    <div class="flex items-center bg-white rounded-full shadow-2xl p-2 border-2 border-goldCustom/50 focus-within:border-goldCustom transition-all">
-                        <i class="fa-solid fa-magnifying-glass text-gray-400 ml-4 text-lg"></i>
-                        <input id="global-search" type="text" placeholder="명소, 영화 제목, 카테고리, 장르 검색..." class="w-full px-4 py-2 text-gray-800 bg-transparent focus:outline-none text-sm sm:text-base">
-                        <button id="search-reset" class="hidden text-gray-400 hover:text-gray-600 px-3 py-1">
-                            <i class="fa-solid fa-xmark text-lg"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="hanoi" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-300 pb-4">
@@ -276,13 +271,13 @@
     <footer class="bg-emeraldCustom-dark text-gray-400 py-12 border-t border-emeraldCustom-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
             <div>
-                <p class="font-serif text-lg font-bold text-goldCustom">VIETNAM JOURNAL & CINEMA</p>
+                <p class="font-serif text-lg font-bold text-goldCustom">VIETNAM LINH HOÀNG</p>
                 <p class="text-xs text-gray-400 mt-1">베트남 하노이의 분위기와 영화 스토리를 기록하는 개인 홈페이지입니다.</p>
             </div>
             <div class="flex space-x-6 text-lg">
-                <a href="#" class="hover:text-goldCustom transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-goldCustom transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" class="hover:text-goldCustom transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#hero" class="hover:text-goldCustom transition-colors" aria-label="Trang cá nhân"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@linhhoang-v9z1u?si=WPSdQtqa8aQ1EVSa" target="_blank" rel="noopener noreferrer" class="hover:text-goldCustom transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://github.com/hnl160509-commits" target="_blank" rel="noopener noreferrer" class="hover:text-goldCustom transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-emeraldCustom-light/40 text-center text-xs text-gray-500">
