@@ -2,7 +2,7 @@
 <html lang="ko" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n<meta name="description" content="하노이 여행 명소와 인생 영화, 음악과 게임을 모아둔 개인 저널입니다.">\n<meta name="theme-color" content="#18342e">
     <title>My Personal Journal | 베트남 하노이 & 영화 컬렉션</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -57,7 +57,9 @@
         .backdrop-blur-custom {
             backdrop-filter: blur(12px);
         }
-    </style>
+    
+:root{--ink:#18342e;--paper:#f6f3ec;--line:rgba(24,52,46,.12)}html{scroll-padding-top:5.5rem}body{background:var(--paper)!important;color:var(--ink)!important}header{background:rgba(19,43,37,.97)!important;box-shadow:0 8px 30px rgba(14,35,29,.14)!important}#music-games{background:#eee9df!important;border-color:var(--line)!important;padding-block:3.5rem!important}#music-games a{background:rgba(255,255,255,.88)!important;border-color:var(--line)!important;border-radius:1.5rem!important;transition:transform .25s ease,box-shadow .25s ease}#music-games a:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(25,49,42,.12)!important}#hero{min-height:590px;display:flex;align-items:center;padding-block:6rem!important;background:#18342e!important}#hero>div:first-child{opacity:.36!important}#hero:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(12,31,27,.65),rgba(12,31,27,.16)),linear-gradient(0deg,rgba(12,31,27,.36),transparent 65%)}#hero>div:nth-child(2){width:100%}#hero h1{font-size:clamp(2.8rem,6vw,5.4rem)!important;letter-spacing:-.055em!important;line-height:1.14!important;text-shadow:0 3px 24px rgba(0,0,0,.2)}#hero p{color:rgba(255,255,255,.9)!important}#global-search{min-height:3.25rem}#hanoi,#favorites{padding-block:6rem!important}#hanoi-grid{gap:1.5rem!important}#hanoi-grid>div{border:1px solid var(--line)!important;border-radius:1.35rem!important;box-shadow:0 8px 26px rgba(24,52,46,.06)!important}#hanoi-grid>div:hover{transform:translateY(-7px);box-shadow:0 22px 42px rgba(24,52,46,.13)!important}#movies{background:#18342e!important;padding-block:5rem!important}#movie-grid>div{border-radius:1.25rem!important;border-color:rgba(255,255,255,.14)!important;background:rgba(255,255,255,.075)!important;box-shadow:0 12px 32px rgba(0,0,0,.12)!important}#movie-grid>div:hover{transform:translateY(-6px);box-shadow:0 20px 36px rgba(0,0,0,.24)!important}#fav-empty{background:rgba(255,255,255,.68)!important;border-color:rgba(24,52,46,.18)!important}footer{background:#122a25!important}#detail-modal>div{border-radius:1.5rem!important}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e2b84e!important;outline-offset:3px}@media(max-width:640px){#hero{min-height:540px;padding-block:4rem!important}#hero h1{font-size:clamp(2.45rem,11vw,3.6rem)!important}#hanoi,#favorites,#movies{padding-block:4rem!important}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
 </head>
 <body class="font-sans antialiased bg-sand text-gray-800 flex flex-col min-h-screen">
 
@@ -146,7 +148,7 @@
                     <span>나의 하노이 여행 일지 & 영화 취향 보관소</span>
                 </div>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-white tracking-tight leading-tight mb-6">
-                    하노이의 고풍스러운 향결과<br>
+                    하노이의 고풍스러운 향기와<br>
                     <span class="text-goldCustom">가슴 깊이 남는 영화 10선</span>
                 </h1>
                 <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-200 font-light mb-10 leading-relaxed">
